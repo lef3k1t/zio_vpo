@@ -60,7 +60,7 @@ public class AuthService {
     public AuthResponse login(LoginRequest req) {
         String email = normalizeEmail(req.getEmail());
 
-        // Проверит пароль и существование пользователя через UserDetailsService
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(email, req.getPassword())
         );
@@ -105,7 +105,7 @@ public class AuthService {
                 throw new IllegalArgumentException("Refresh token mismatch");
             }
 
-            // Rotation: старый refresh — в revoked
+
             session.setRevoked(true);
             sessionRepository.save(session);
 

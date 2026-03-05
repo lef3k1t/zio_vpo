@@ -45,7 +45,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             var claims = jwtTokenProvider.parse(token).getBody();
             String type = claims.get("type", String.class);
 
-            // В фильтре пропускаем только access-токены
+
             if (!"access".equals(type)) {
                 chain.doFilter(request, response);
                 return;

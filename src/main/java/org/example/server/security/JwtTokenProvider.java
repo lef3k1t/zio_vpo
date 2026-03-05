@@ -31,7 +31,7 @@ public class JwtTokenProvider {
 
     @PostConstruct
     void init() {
-        // Для HS256 нужен достаточно длинный secret (желательно 32+ символа)
+
         this.key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
     }
 

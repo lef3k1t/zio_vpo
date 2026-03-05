@@ -33,10 +33,7 @@ public class SecurityConfig {
         return cfg.getAuthenticationManager();
     }
 
-    /**
-     * Публичные эндпоинты: auth + actuator
-     * Важно: более высокий приоритет
-     */
+
     @Bean
     @Order(1)
     public SecurityFilterChain publicChain(HttpSecurity http) throws Exception {
@@ -54,13 +51,11 @@ public class SecurityConfig {
                         .anyRequest().denyAll()
                 );
 
-        // JWT-фильтр сюда не добавляем вообще
+
         return http.build();
     }
 
-    /**
-     * Приватные эндпоинты: всё остальное
-     */
+
     @Bean
     @Order(2)
     public SecurityFilterChain privateChain(HttpSecurity http) throws Exception {
