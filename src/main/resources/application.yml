@@ -50,6 +50,9 @@ jwt:
 app:
   jwt:
     refresh-ttl-days: 30
+  ticket:
+    ttl-seconds: ${TICKET_TTL_SECONDS:300}
+    signing-secret: ${TICKET_SIGNING_SECRET}
 
 management:
   endpoints:
