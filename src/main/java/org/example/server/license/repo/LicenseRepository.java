@@ -12,15 +12,16 @@ public interface LicenseRepository extends JpaRepository<License, Long> {
     Optional<License> findByCode(String code);
 
     @Query("""
-        select l from License l
-          join DeviceLicense dl on dl.license = l
-          join Device d on dl.device = d
-        where d.macAddress = :deviceMac
-          and l.user.id = :userId
-          and l.product.id = :productId
-          and l.blocked = false
-          and l.endingDate is not null
-          and l.endingDate >= :now
-        """)
+            select l from License l
+              join fetch l.user u
+              join DeviceLicense dl on dl.license = l
+              join Device d on dl.device = d
+            where d.macAddress = :deviceMac
+              and u.id = :userId
+              and l.product.id = :productId
+              and l.blocked = false
+              and l.endingDate is not null
+              and l.endingDate >= :now
+            """)
     Optional<License> findActiveByDeviceUserAndProduct(String deviceMac, Long userId, Long productId, OffsetDateTime now);
 }

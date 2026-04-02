@@ -54,6 +54,13 @@ app:
     ttl-seconds: ${TICKET_TTL_SECONDS:300}
     signing-secret: ${TICKET_SIGNING_SECRET}
 
+signature:
+  key-store-path: classpath:signing.jks
+  key-store-type: JKS
+  key-store-password: ${SIGNATURE_KEYSTORE_PASSWORD}
+  key-alias: ${SIGNATURE_KEY_ALIAS}
+  key-password: ${SIGNATURE_KEY_PASSWORD}
+
 management:
   endpoints:
     web:
